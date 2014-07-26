@@ -6,7 +6,8 @@ function initChat() {
       poke_id = 0,
       name = 'guest',
       current_status = 'online',
-      position = Math.random() * (80 - 20) + 20;
+      position = Math.random() * (80 - 20) + 20,
+      connected_users = 0;
 
 
   function isNumber (o) {
@@ -25,10 +26,10 @@ function initChat() {
   }
 
   // Get a reference to the list of pokemon
-  var pokeref = 'https://haustraliaer.firebaseio.com/pokelist/' + rand_id;
+  var pokeref = 'https://hauschat.firebaseio.com/pokelist/' + rand_id;
 
   // Get firebase references
-  var userListRef = new Firebase('https://haustraliaer.firebaseio.com/users');
+  var userListRef = new Firebase('https://hauschat.firebaseio.com/users');
   var pokelist = new Firebase(pokeref);
 
   pokelist.once('value', function(data) {
@@ -59,7 +60,7 @@ function initChat() {
     }
 
     // Get a reference to my own presence status.
-    var connectedRef = new Firebase("https://haustraliaer.firebaseio.com/.info/connected");
+    var connectedRef = new Firebase("https://hauschat.firebaseio.com/.info/connected");
 
     connectedRef.on("value", function(isOnline) {
 
@@ -92,7 +93,10 @@ function initChat() {
 
     var user = snapshot.val();
 
-    var poke_html = '<div id="' + snapshot.name() + '_container" class="poke_container"><div class="test_chat" id="' + snapshot.name() + '_chat"></div><img id ="' + snapshot.name() + '_user" class="visitor__img" src="assets/img/poke/' + user.poke_id + '.gif"/></div>'
+    var poke_html = '<div id="' + snapshot.name() + '_container" class="poke_container"><div class="test_chat" id="' + snapshot.name() + '_chat"></div><img id ="' + snapshot.name() + '_user" class="visitor__img" src="assets/img/poke/' + user.poke_id + '.gif"/></div>';
+
+    connected_users += 1
+    $(document).attr("title", "Haustraliaer (" + connected_users + ")");
 
     $(poke_html).hide().appendTo("#js-fullscreen-intro").fadeIn(500);
 
@@ -121,6 +125,9 @@ function initChat() {
     var message_hash = '#' + message_id;
     var html = '<p id="' + message_id + '" class="il-center alert__message">' + user.name + ' fled!</p>';
 
+    connected_users -= 1;
+    $(document).attr("title", "Haustraliaer (" + connected_users + ")");
+
     $("#" + snapshot.name() + "_user").fadeOut(500,function() {
       $(this).remove();
     });
@@ -136,8 +143,7 @@ function initChat() {
 
   // chat log:
 
-  var chatDate = 'https://haustraliaer.firebaseio.com/chat/' + datDate();
-  var chatRef = new Firebase(chatDate);
+  var chatRef = new Firebase('https://hauschat.firebaseio.com/chat/room');
 
   // When the user presses enter on the message input, write the message to firebase.
   $('#messageInput').keypress(function (e) {
@@ -165,23 +171,29 @@ function initChat() {
        first_chat = false;
        return;
     }
-    console.log(snapshot)
+
     var message = snapshot.val();
     var message_id =  snapshot.name() + '_chat';
     var message_hash = '#' + message_id;
 
-    var msgEl = $("<p>").attr("id", message_id).addClass("il-center alert__message");
-    msgEl.html(message.text);
-    msgEl.css({marginLeft: message.position + "%"});
+    var span = $("<span>").html(message.text)
+    var msgEl = $("<p>")
+      .attr("id", message_id)
+      .addClass("il-center alert__message")
+      .css({marginLeft: message.position + "%"})
+      .html(span);
 
     var datDiv = $('.chatbox');
 
     var snapshot_url = chatRef + '/' + snapshot.name();
 
+    $(document).attr("title", "Haustraliaer (" + connected_users + ") !");
+
     msgEl.hide().appendTo(datDiv).fadeIn(500,function() {
       // after fading in...
       $(message_hash).delay(12000).fadeOut(500, function() {
-       $(message_hash).delay(300).remove();
+        $(document).attr("title", "Haustraliaer (" + connected_users + ")")
+        $(message_hash).delay(300).remove();
       });
     });
 
