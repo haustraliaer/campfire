@@ -145,10 +145,12 @@ function initChat() {
       var text = $('#messageInput').val();
       var chatter = user_id;
       var pokemon = name;
+
       chatRef.push({
         text:text,
         chatter: chatter,
-        pokemon: pokemon
+        pokemon: pokemon,
+        position: position
       });
       $('#messageInput').val('');
     }
@@ -163,16 +165,20 @@ function initChat() {
        first_chat = false;
        return;
     }
+    console.log(snapshot)
     var message = snapshot.val();
     var message_id =  snapshot.name() + '_chat';
     var message_hash = '#' + message_id;
-    var html = '<p id="' + message_id + '" class="il-center alert__message">' + message.text + '</p>';
 
-    var datDiv = '#' + message.chatter + '_chat';
+    var msgEl = $("<p>").attr("id", message_id).addClass("il-center alert__message");
+    msgEl.html(message.text);
+    msgEl.css({marginLeft: message.position + "%"});
+
+    var datDiv = $('.chatbox');
 
     var snapshot_url = chatRef + '/' + snapshot.name();
 
-    $(html).hide().appendTo(datDiv).fadeIn(500,function() {
+    msgEl.hide().appendTo(datDiv).fadeIn(500,function() {
       // after fading in...
       $(message_hash).delay(12000).fadeOut(500, function() {
        $(message_hash).delay(300).remove();
@@ -180,9 +186,6 @@ function initChat() {
     });
 
   });
-
-
-
 
   function datDate() {
     var today = new Date();

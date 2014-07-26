@@ -11,19 +11,7 @@ __document.ready(function() {
   __mq.addEventListener('transitionend', set_breakpoint, true);
 
   update_fastclick();
+  initScreenHeight();
   introHeightCheck();
   initChat();
-
-  // adust height on resize
-  var rtime = new Date(1, 1, 2000, 12,00,00);
-  var timeout = false;
-  var delta = 200;
-  __w.resize(function() {
-      rtime = new Date();
-      if (timeout === false) {
-          timeout = true;
-          setTimeout(resizeend, delta);
-      }
-  });
-
 });

@@ -1,4 +1,20 @@
 
+// adust height on resize
+var rtime = new Date(1, 1, 2000, 12,00,00);
+var timeout = false;
+var delta = 200;
+
+function initScreenHeight() {
+  __w.resize(function() {
+      rtime = new Date();
+      if (timeout === false) {
+          timeout = true;
+          setTimeout(resizeend, delta);
+      }
+  });
+}
+
+
 function resizeend() {
     if(new Date() - rtime < delta) {
 
