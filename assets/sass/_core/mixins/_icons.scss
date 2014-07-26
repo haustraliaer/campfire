@@ -1,0 +1,18 @@
+
+// Icons ////////////////////////////////////////////////////////////////////////
+
+
+@mixin icon($width, $height, $display) {
+
+    display: $display;
+    @include rem(width, $width);
+    @include rem(height, $height);
+
+    background-position: center center;
+
+    -ms-background-size: $width $height;
+    -webkit-background-size: $width $height;
+    -o-background-size: $width $height;
+    -moz-background-size: $width $height;   
+    @include rem(background-size, $width $height);
+}

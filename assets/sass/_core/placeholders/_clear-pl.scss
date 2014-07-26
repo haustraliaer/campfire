@@ -1,0 +1,49 @@
+
+// Clear ////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Micro clearfix, as per: nicolasgallagher.com/micro-clearfix-hack
+ * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
+ * and over in your markup.
+ */
+
+  
+%clear {
+
+	zoom:1;
+    &:before,
+    &:after{
+        content:"";
+        display:table;
+    }
+    &:after{
+        clear:both;
+    }
+}
+
+
+@mixin clear(){
+
+
+	@if $mquery == false {
+		@extend %clear;
+	}
+	
+	@else {
+		zoom:1;
+	    &:before,
+	    &:after{
+	        content:"";
+	        display:table;
+	    }
+	    &:after{
+	        clear:both;
+	    }
+	}
+
+}
+
+.clear {
+	@extend %clear;
+}

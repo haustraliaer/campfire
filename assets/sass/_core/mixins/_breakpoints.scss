@@ -1,0 +1,101 @@
+
+
+
+// Breakpoints ////////////////////////////////////////////////////////////////////////
+
+
+$mquery: false !default;
+
+$fix-mqs: false !default;
+
+
+// Breakpoints (b_)
+
+$mob: 30em !default;
+$portrait: 40em !default;
+$landscape: 64em !default;
+$wide: 80em !default;
+
+
+@mixin breakpoint($point) {
+
+     @if $point == mob {
+
+          $width: $mob;
+
+          @if $fix-mqs {
+               @if $fix-mqs >= $width {
+                    @content;
+               }
+          }
+
+          @else {
+
+               @media (min-width: $width) { 
+                    $mquery: true;
+                    @content;
+                    $mquery: false;
+               }
+          }
+     }
+
+     @if $point == portrait {
+
+          $width: $portrait;
+
+          @if $fix-mqs {
+               @if $fix-mqs >= $width {
+                    @content;
+               }
+          }
+
+          @else {
+
+               @media (min-width: $width) { 
+                    $mquery: true;
+                    @content;
+                    $mquery: false;
+               }
+          }
+     }
+
+     @if $point == landscape {
+
+          $width: $landscape;
+
+          @if $fix-mqs {
+               @if $fix-mqs >= $width {
+                    @content;
+               }
+          }
+
+          @else {
+
+               @media (min-width: $width) { 
+                    $mquery: true;
+                    @content;
+                    $mquery: false;
+               }
+          }
+     }
+
+     @else if $point == wide {
+
+          $width: $wide;
+
+          @if $fix-mqs {
+               @if $fix-mqs >= $width {
+                    @content;
+               }
+          }
+
+          @else {
+
+               @media (min-width: $width) { 
+                    $mquery: true;
+                    @content;
+                    $mquery: false; 
+               }
+          }
+     }
+}

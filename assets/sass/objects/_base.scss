@@ -1,0 +1,42 @@
+
+//   ==================================== BASE ======================================   //
+
+
+html {
+
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    line-height: 1.5;
+
+    font-family: $sans;
+    color: $c-fg;
+    font-weight: $f-normal;
+    font-style: normal;
+
+    overflow-y: scroll;
+
+    background-color: $c-bg;
+
+}
+
+
+* {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+
+a {
+    color: $c-link;
+
+    &:hover {
+        color: $c-hover
+    }
+}
+
+// Generally, we'll want to reset the H tags...
+h1,h2,h3,h4,h5,h6 {
+    font-size: $f-1;
+}

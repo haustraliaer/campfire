@@ -1,19 +1,15 @@
 
+@font-face {
+	font-family: 'poke-font';
+	src: url('../fonts/pokemon_gb-webfont.eot');
+	src: url('../fonts/pokemon_gb-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/pokemon_gb-webfont.woff') format('woff'),
+		 url('../fonts/pokemon_gb-webfont.ttf') format('truetype'),
+		 url('../fonts/pokemon_gb-webfont.svg#pokemon_gb-webfont') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+}
 
-
-// Font imports go here
-// ------------------------------------------------------------------------------------ 
-
-
-// @font-face {
-//   font-family: 'Publico Text Web';
-//   src: url('../fonts/PublicoText-Roman-Web.eot');
-//   src: url('../fonts/PublicoText-Roman-Web.eot?#iefix') format('embedded-opentype'),
-//      url('../fonts/PublicoText-Roman-Web.woff') format('woff'),
-//      url('../fonts/PublicoText-Roman-Web.ttf') format('truetype'),
-//      url('../fonts/PublicoText-Roman-Web.svg#Publico Text Web') format('svg');
-//   font-weight:  400;
-//   font-style:   normal;
-//   font-stretch: normal;
-// }
-
+$mono: 'poke-font', mono;
+$serif: 'Hoefler Text A', 'Hoefler Text B', serif;

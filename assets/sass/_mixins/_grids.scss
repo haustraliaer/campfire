@@ -1,0 +1,110 @@
+
+
+
+
+
+// grid variables
+
+$column-width: 12;
+$gutter-width: 5;
+
+
+$pixelgrid:    12px;
+$pixelgutter:  5px;
+
+
+$font-size:    16;
+$grem: $font-size / 1rem;
+
+
+
+
+
+// Mixin for returning pixel and rem values
+@mixin grem($property, $pixel) { #{$property}: $pixel * 1px; #{$property}: $pixel / $grem;}
+// Function to calculate the width of an element
+
+
+@function calcwidth($cols) { 
+  @return ($cols * ($column-width + $gutter-width) - $gutter-width); }
+
+
+ @function pixelwidth($cols) { 
+  @return (($cols * ($column-width + $gutter-width) - $gutter-width) * 1px); }
+
+
+
+// Mixin to include width in px and rem
+@mixin gridspace($cols:1) { 
+  @include grem(width, calcwidth($cols)); }
+// Mixin for "rows", or anything spanning the entire width
+@mixin fullwidth($cols:8) { 
+  @include grem(width, $cols * ($column-width + $gutter-width)); }
+// Mixin for creating whitespace
+@mixin whitespace($cols:1) {
+	 @include grem(margin-left, $cols * ($column-width + $gutter-width) + $gutter-width); }
+
+@mixin insetspace($cols:1, $border:0) {
+	@include grem(padding-left, $cols * ($column-width + $gutter-width) + $gutter-width - $border); }
+
+
+
+
+// container for columns (based on full-width value)
+
+.l-row {
+
+	@include clear();
+	display: block;
+	margin: 0 auto;
+
+
+	@include fullwidth(16);
+
+	@include breakpoint(mob) {
+		@include fullwidth(20);
+	}
+
+	@include breakpoint(portrait) {
+		@include fullwidth(32);
+	}
+
+	@include breakpoint(landscape) {
+		@include fullwidth(42);
+	}
+
+	@include breakpoint(wide) {
+		@include fullwidth(52);
+	}
+}
+
+
+// column placeholder
+
+%columns {
+
+	@include grem(margin-left,$gutter-width);
+
+	float: left;
+	display: block;
+	position: relative;
+
+	@include grem(max-width,calcwidth(16)); 
+
+	@include breakpoint(mob) {
+		@include grem(max-width,calcwidth(20)); 
+	}
+
+	@include breakpoint(portrait) {
+		@include grem(max-width,calcwidth(32)); 
+	}
+
+	@include breakpoint(landscape) {
+		@include grem(max-width,calcwidth(42)); 
+	}
+
+	@include breakpoint(wide) {
+		@include grem(max-width,calcwidth(52)); 
+	}
+
+}

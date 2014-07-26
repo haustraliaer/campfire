@@ -7,23 +7,22 @@
 <!--[if IE 8]>          <html class="no-js site__background ie8 oldie" lang="en">     <![endif]-->
 <!--[if IE 9]>          <html class="no-js site__background ie9" lang="en">           <![endif]-->
 
-<!--[if gt IE 8]><!-->  
-<html class="no-js" lang="en"> 
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
 <!--<![endif]-->
 
   {{> _head }}
 
   <body>
 
-    {{! pipe breakpoints to js }}
     <div id="js__media-check"></div>
 
-    {{! page content is loaded with this tag }}
-    {{> body }}
+    <div class="l-site-container">
+      {{> body }}
+    </div>
 
-    {{! scripts are loaded in this partial }}
     {{> _foot }}
 
   </body>
-  
+
 </html>

@@ -1,0 +1,127 @@
+
+// font defaults
+
+$sans:   sans-serif !default;
+$serif:  serif !default;
+$mono:   "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace !default;
+
+$f-5:       36px !default;
+$f-4:       26px !default;
+$f-3:       22px !default;
+$f-2:       18px !default;
+$f-1:       16px !default;
+$f-0:       13px !default;
+
+$f-light:   300 !default;
+$f-normal:  400 !default;
+$f-medium:  600 !default;
+$f-bold:    700 !default;
+
+
+$size-5:    50px !default;
+$size-4:    30px !default;
+$size-3:    20px !default;
+$size-2:    15px !default;
+$size-1:    10px !default;
+$size-0:     5px !default;
+
+
+// colour defaults
+
+
+$c-fg:          #333333 !default;
+$c-bg:          #FFFFFF !default;
+
+$c-4:           #444444 !default;
+$c-3:           #666666 !default;
+$c-2:           #999999 !default;
+$c-1:           #C9C9C9 !default;
+$c-0:           #E6E6E6 !default;
+
+$c-alert:       #fd9dfd !default;
+
+$c-link:        #4F99FF !default;
+$c-hover:       #4658FF !default;
+
+
+//   ==================================== NORMALIZE ======================================   //
+
+body,
+h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,
+dl,dd,ol,ul,
+form,fieldset,legend,
+table,th,td,caption,
+figure,
+hr{
+    margin:0;
+    padding:0;
+    font-weight: normal;
+}
+article,aside,details,figcaption,figure,footer,
+header,hgroup,menu,nav,section{
+    display:block;
+}
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+}
+strong,b,mark{
+    font-weight: $f-medium;
+    font-style: normal;
+}
+em,i,cite,q,address,dfn,var{
+    font-style: italic;
+    font-weight: inherit;
+}
+abbr[title],dfn[title]{
+    cursor:help;
+    @include rem(border-bottom-width, 1px);
+    border-bottom-style: dotted; 
+}
+ins{
+    @include rem(border-bottom-width, 1px);
+    border-bottom-style: solid; 
+}
+a,u,ins{
+    text-decoration:none;
+}
+del,s{
+    text-decoration:line-through;
+}
+img{
+    border:none;
+    font-style:italic;
+    max-width: 100%;
+}
+input,
+select,option,optgroup,
+textarea{
+    font:inherit;
+}
+
+// Give form elements some cursor interactions...
+
+input,
+textarea,
+button,
+select,
+option{
+    cursor:pointer;
+}
+
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus{
+    cursor:text;
+    outline:none;
+}
+
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
